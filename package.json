@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/kaysgericht/metalsmith_blog/issues"
   },
-  "homepage": "https://github.com/kaysgericht/metalsmith_blog#readme"
+  "homepage": "https://github.com/kaysgericht/metalsmith_blog#readme",
+  "dependencies": {
+    "metalsmith": "^2.3.0"
+  }
 }
