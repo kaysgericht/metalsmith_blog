@@ -3,6 +3,8 @@ var markdown = require('metalsmith-markdown');
 var layouts = require('metalsmith-layouts');
 var handlebars = require('handlebars');
 var collections = require('metalsmith-collections');
+var discoverPartials = require('metalsmith-discover-partials');
+var renameme = require('metalsmith-rename');
 
 metalsmith(__dirname)
   .metadata({
@@ -13,15 +15,26 @@ metalsmith(__dirname)
   })
   .source('./src')
   .destination('./public')
+  
+  .use(markdown())
   .use(collections({
     articles: {
-      pattern: 'articles/**/*.md',
+      pattern: 'articles/**/*.html',
       sortBy: 'date',
       reverse: true
       },
     }))
-  .use(markdown())
+  .use(
+    renameme([
+      [/\.md$/, ".html"]
+    ])
+  )
+  .use(discoverPartials({
+    directory: './layouts/partials',
+    pattern: /\.hbs$/
+  }))
   .use(layouts())
+ 
   .build(function (err) {
     if (err) {
       console.log(err);
