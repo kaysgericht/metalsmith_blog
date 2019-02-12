@@ -5,6 +5,7 @@ var handlebars = require('handlebars');
 var collections = require('metalsmith-collections');
 var discoverPartials = require('metalsmith-discover-partials');
 var renameme = require('metalsmith-rename');
+var permalinks = require('metalsmith-permalinks');
 
 metalsmith(__dirname)
   .metadata({
@@ -32,6 +33,10 @@ metalsmith(__dirname)
   .use(discoverPartials({
     directory: './layouts/partials',
     pattern: /\.hbs$/
+  }))
+  .use(permalinks({
+    relative: false,
+    pattern: ':title',
   }))
   .use(layouts())
  
