@@ -2,6 +2,7 @@ var metalsmith = require('metalsmith');
 var markdown = require('metalsmith-markdown');
 var layouts = require('metalsmith-layouts');
 var handlebars = require('handlebars');
+var collections = require('metalsmith-collections');
 
 metalsmith(__dirname)
   .metadata({
@@ -12,6 +13,13 @@ metalsmith(__dirname)
   })
   .source('./src')
   .destination('./public')
+  .use(collections({
+    articles: {
+      pattern: 'articles/**/*.md',
+      sortBy: 'date',
+      reverse: true
+      },
+    }))
   .use(markdown())
   .use(layouts())
   .build(function (err) {
