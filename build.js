@@ -1,5 +1,7 @@
 var metalsmith = require('metalsmith');
 var markdown = require('metalsmith-markdown');
+var layouts = require('metalsmith-layouts');
+var handlebars = require('handlebars');
 
 metalsmith(__dirname)
   .metadata({
@@ -11,6 +13,7 @@ metalsmith(__dirname)
   .source('./src')
   .destination('./public')
   .use(markdown())
+  .use(layouts())
   .build(function (err) {
     if (err) {
       console.log(err);
