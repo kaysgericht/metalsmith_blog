@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/kaysgericht/metalsmith_blog#readme",
   "dependencies": {
-    "metalsmith": "^2.3.0"
+    "metalsmith": "^2.3.0",
+    "metalsmith-markdown": "^1.1.0"
   }
 }
